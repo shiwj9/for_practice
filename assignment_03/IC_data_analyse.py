@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import os
 
-data = pd.read_csv("ICData.csv",dtype={'驾驶员编号': int})
+data = pd.read_csv("ICData.csv", dtype={'驾驶员编号': int})
 
 # 1. 分别计算早上7点前和晚上10点之后的公共交通上车刷卡量
 # 将交易时间转换为datetime类型
@@ -115,10 +115,13 @@ for line_no in range(1101, 1121):
 
 # 5. 分析搭载乘客情况，确定服务乘客人次最多的10个司机、10条线路、10个站点和10台车辆
 def top_n_analysis(data, n=10):
-    driver_counts = data.groupby('驾驶员编号')['交易卡号'].count().rename('服务乘客人次').sort_values(ascending=False).head(n)
+    driver_counts = data.groupby('驾驶员编号')['交易卡号'].count().rename('服务乘客人次').sort_values(
+        ascending=False).head(n)
     line_counts = data.groupby('线路号')['交易卡号'].count().rename('服务乘客人次').sort_values(ascending=False).head(n)
-    stop_counts = data.groupby('上车站点')['交易卡号'].count().rename('服务乘客人次').sort_values(ascending=False).head(n)
-    vehicle_counts = data.groupby('车辆编号')['交易卡号'].count().rename('服务乘客人次').sort_values(ascending=False).head(n)
+    stop_counts = data.groupby('上车站点')['交易卡号'].count().rename('服务乘客人次').sort_values(ascending=False).head(
+        n)
+    vehicle_counts = data.groupby('车辆编号')['交易卡号'].count().rename('服务乘客人次').sort_values(
+        ascending=False).head(n)
 
     print("服务乘客人次最多的10个司机:")
     print(driver_counts)
