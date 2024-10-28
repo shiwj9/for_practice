@@ -8,10 +8,11 @@ euro12 = pd.read_csv('data.csv')
 print(euro12['Goals'])
 
 # （4）有多少球队参与了2012欧洲杯？
-print(f"有多少球队参与了2012欧洲杯？{len(euro12['Team'].unique())}")
+print(f"有多少球队参与了2012欧洲杯？{euro12['Team'].nunique()}")  # unique是得到内容，nunique是得到数量
 
-# （5）该数据集中一共有多少列(columns)?
-print(f"数据集中一共有{len(euro12.columns)}列")
+# （5）该数据集中一共有多少列(columns)
+# euro12.shape 可以得到一个元组，这个元组的第一个元素是DataFrame的行数，第二个元素是列数。
+print(f"数据集中一共有{euro12.shape[1]}列")
 
 # （6）将数据集中的列Team, Yellow Cards和Red Cards单独存为一个名叫discipline的数据框
 discipline = euro12[['Team', 'Yellow Cards', 'Red Cards']]

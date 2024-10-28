@@ -38,7 +38,7 @@ values = [23, 45, 56, 78]
 colors = ['red', 'blue', 'green', 'purple']
 
 # 绘制柱状图
-plt.bar(categories, values, color=colors)
+plt.bar(categories, values, color=colors, width=0.6)
 
 # 添加数据标签
 for i, v in enumerate(values):  # i,v分别是索引和值
@@ -47,6 +47,7 @@ for i, v in enumerate(values):  # i,v分别是索引和值
 
 # 设置标题和轴标签（对于柱状图，x轴通常是类别标签，所以不需要设置x轴刻度）
 plt.title('柱状图示例')
+plt.xlabel('类别')
 plt.ylabel('值')
 
 # 保存图表
@@ -59,24 +60,18 @@ plt.show()
 # 随机生成数据
 np.random.seed(0)  # 设置随机种子以便结果可重复
 x_random = np.arange(1, 101)
-y_random = np.random.rand(100) * x_random  # 假设有一定的线性关系
+y_random = 2 * x_random + np.random.randn(100) * 10  # 假设有一定的线性关系
 
 # 绘制散点图
-plt.scatter(x_random, y_random, color='blue', s=10, alpha=0.5, label='数据点')
-
-# 计算趋势线（线性回归）
-coefficients = np.polyfit(x_random, y_random, 1)
-polynomial = np.poly1d(coefficients)
-trendline_x = np.linspace(1, 100, 100)
-trendline_y = polynomial(trendline_x)
+plt.scatter(x_random, y_random, color='blue', s=5, alpha=0.5, label='数据点', marker='o')
 
 # 绘制趋势线
-plt.plot(trendline_x, trendline_y, color='red', label='趋势线')
+plt.plot(x_random, 2 * x_random, color='red', label='趋势线')
 
 # 设置标题和轴标签
-plt.title('散点图及趋势线示例')
-plt.xlabel('x 值')
-plt.ylabel('y 值')
+plt.title('散点图示例')
+plt.xlabel('x')
+plt.ylabel('y')
 
 # 添加图例
 plt.legend()
@@ -96,7 +91,7 @@ explode = (0.1, 0, 0, 0)  # 突出显示第一个扇区
 
 # 绘制饼图
 plt.pie(sizes, explode=explode, labels=labels, colors=colors, autopct='%1.1f%%',
-        startangle=140)  # autopct 用于显示百分比，startangle 设置起始角度
+        startangle=90)  # autopct 用于显示百分比，startangle 设置起始角度
 
 # 设置标题（对于饼图，通常不需要x轴和y轴标签）
 plt.title('饼图示例')
